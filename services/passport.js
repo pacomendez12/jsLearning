@@ -25,14 +25,17 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       /*console.log("access token", accessToken);
       console.log("refres token", refreshToken);*/
-      console.log("profile", profile);
+      //console.log("profile", profile);
       User.findOne({ googleId: profile.id })
         .then(existingUser => {
           if (existingUser) {
             // User currently exists
+            console.log("user already exists");
             done(null, existingUser);
           } else {
             // New user
+            console.log("Creating new user");
+
             new User({ googleId: profile.id })
               .save()
               .then(user => done(null, user))
@@ -42,6 +45,7 @@ passport.use(
           }
         })
         .catch(error => {
+          console.log("Error finding user");
           assert.isNotOk(error, "Promise error");
         });
     }
