@@ -24,6 +24,7 @@
     "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "prettier-eslint": "^8.8.1"
   }
 }
